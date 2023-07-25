@@ -23,7 +23,7 @@ def retrieve_codewords():
     codewords = []
     print("Enter the {numwords} codewords:".format(numwords=NUM_CODEWORDS))
     for i in range(NUM_CODEWORDS):
-        codeword = CodeWord(raw_input())
+        codeword = CodeWord(input())
         codewords.append(codeword)
     return codewords
 
@@ -53,10 +53,10 @@ def update_scores(codewords):
 
 def try_word(codewords, suggestion=None):
     if not suggestion:
-        index = int(raw_input("Input index of word to try: "))
+        index = int(input("Input index of word to try: "))
     else:
         index = codewords.index(suggestion)
-    likeness = int(raw_input("Likeness: "))
+    likeness = int(input("Likeness: "))
     for j in range(len(wordmap[index])):
         wordscore = wordmap[index][j][1]
         if wordscore != likeness:
@@ -66,8 +66,8 @@ def try_word(codewords, suggestion=None):
 def suggest_word(codewords):
     sorted_codewords = sorted((cw for cw in codewords if cw.valid), key=lambda codeword: codeword.score, reverse=True)
     suggested_word = sorted_codewords[0]
-    print
-    print "Try: {0}".format(suggested_word)
+    print()
+    print("Try: {0}".format(suggested_word))
     return suggested_word
 
 
@@ -81,24 +81,24 @@ def init_wordmap(codewords):
 def print_wordmap(codewords):
     wordlen = len(codewords[0].word)
     wordspace = wordlen + 2
-    print "Scoremap:"
-    print "{0:{1}}".format(' ', wordspace),
+    print("Scoremap:")
+    print("{0:{1}}".format(' ', wordspace))
     for word in codewords:
-        print "{0:>{1}}".format(str(word), wordspace),
-    print
+        print("{0:>{1}}".format(str(word), wordspace))
+    print()
     for i,word1 in enumerate(codewords):
-        print "{0:>{1}}".format(str(word1), wordspace),
+        print("{0:>{1}}".format(str(word1), wordspace))
         for j,word2 in enumerate(codewords):
             score = wordmap[i][j][1]
-            print "{0:>{1}}".format(score, wordspace),
-        print
+            print("{0:>{1}}".format(score, wordspace))
+        print()
 
 
 def print_words(codewords):
     for word in codewords:
         if word.valid:
-            print repr(word)
-    print
+            print(repr(word))
+    print()
 
 
 def update_wordmap(j,k,score):
@@ -138,8 +138,8 @@ def main():
 
     for word in codewords:
         if word.valid:
-            print
-            print "The codeword is: {word}".format(word=word)
+            print()
+            print("The codeword is: {word}".format(word=word))
 
 if __name__ == '__main__':
     main()
